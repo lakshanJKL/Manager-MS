@@ -1,4 +1,4 @@
 main.wasm
 .spin/
-.spin.toml
-/target
+spin.toml
+/target/
