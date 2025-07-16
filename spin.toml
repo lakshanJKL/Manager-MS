@@ -1,0 +1,57 @@
+spin_manifest_version = 2
+
+[application]
+name = "managers"
+version = "0.1.0"
+authors = ["H.D.J.Lakshan <lakshanjkl49@gmail.com>"]
+description = "ms spi"
+
+[[trigger.http]]
+route = "/api/v1/users-service/..."
+component = "user-service"
+
+[component.user-service]
+source = "target/wasm32-wasip1/release/user_service_component.wasm"
+allowed_outbound_hosts = ["mysql://switchyard.proxy.rlwy.net:38343"]
+
+[component.user-service.build]
+command = "cargo build --target wasm32-wasip1 --release"
+workdir = "user-service-component"
+watch = ["src/**/*.rs", "Cargo.toml"]
+
+[component.user-service.variables]
+db_connection_string = "mysql://root:wRDrmLJirSbuRhDxxeeJiewNrGZEnPiL@switchyard.proxy.rlwy.net:38343/railway"
+secret = "h8dqw7quj2j19ujdj39r2jjkklxmvb32903odjdwhadeejiodowkd389"
+
+[[trigger.http]]
+route = "/auth/..."
+component = "auth-service"
+
+[component.auth-service]
+source = "target/wasm32-wasip1/release/auth_service_component.wasm"
+allowed_outbound_hosts = ["https://managers-api.fermyon.app"]
+
+[component.auth-service.build]
+command = "cargo build --target wasm32-wasip1 --release"
+workdir = "auth-service-component"
+watch = ["src/**/*.rs", "Cargo.toml"]
+
+[component.auth-service.variables]
+secret = "h8dqw7quj2j19ujdj39r2jjkklxmvb32903odjdwhadeejiodowkd389"
+
+[[trigger.http]]
+route = "/api/v1/image-service/..."
+component = "image-service"
+
+[component.image-service]
+source = "target/wasm32-wasip1/release/image_service_component.wasm"
+allowed_outbound_hosts = ["postgres://ep-red-surf-aeuq4flx-pooler.c-2.us-east-2.aws.neon.tech"]
+
+[component.image-service.build]
+command = "cargo build --target wasm32-wasip1 --release"
+workdir = "image-service-component"
+watch = ["src/**/*.rs", "Cargo.toml"]
+
+[component.image-service.variables]
+db_connection_string_pgsql = "postgresql://neondb_owner:npg_50oZbwDkshpx@ep-red-surf-aeuq4flx-pooler.c-2.us-east-2.aws.neon.tech/manager_image_db?sslmode=require&channel_binding=require"
+secret = "h8dqw7quj2j19ujdj39r2jjkklxmvb32903odjdwhadeejiodowkd389"

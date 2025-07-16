@@ -1,0 +1,25 @@
+[package]
+name = "auth_service_component"
+authors = ["H.D.J.Lakshan <lakshanjkl49@gmail.com>"]
+description = "auth service api"
+version = "0.1.0"
+rust-version = "1.78"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+name = "auth_service_component"
+
+[dependencies]
+anyhow = "1"
+spin-sdk = "3.1.0"
+serde = { version = "1.0.219", features = ["derive"] }
+bcrypt = "0.14"
+hmac = "0.12.1"
+sha2 = "0.10.9"
+base64 = "0.22.1"
+chrono = "0.4"
+serde_json = "1.0.140"
+auth_middleware = {path = "../shared-crates/auth-middleware"}
+
+

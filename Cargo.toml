@@ -1,0 +1,8 @@
+[workspace]
+members = [
+    "user-service-component",
+    "image-service-component",
+    "auth-service-component",
+    "shared-crates/auth-middleware"
+]
+resolver = "2"
