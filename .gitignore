@@ -1,4 +1,18 @@
+# Wasm builds
 main.wasm
+
+# Fermyon Spin
 .spin/
 spin.toml
-/target/
+
+# Rust
+target/
+**/target/
+Cargo.lock
+**/Cargo.lock
+
+# IDE
+.idea/
+
+# Output or temp
+output.txt
